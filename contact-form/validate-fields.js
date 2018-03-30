@@ -1,5 +1,3 @@
 $(document).ready(function() {
-    $('#name').click(function() {
-        alert("You clicked on the name.");
-    });
+    alert("jQuery is working, you just shouldn't add async to the CDN tag.");
 });

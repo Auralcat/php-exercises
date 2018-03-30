@@ -7,9 +7,9 @@ $pageTitle = "Sample Contact Form";
 
 <head>
     <meta charset="UTF-8" />
-    <title>Sample Contact Form</title>
+    <title><?php echo $pageTitle; ?></title>
     <link href=<?php echo $cssFrameworkLink; ?> rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" async></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="validate-fields.js"></script>
 </head>
 
