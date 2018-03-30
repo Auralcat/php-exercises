@@ -195,5 +195,54 @@
             return in_array($varname, $arr_internal_vars);
         }
 
+        function FormSubmissionToMail() {
+            $ret_str = '';
+            foreach($_POST as $key => $value) {
+                if (!$this->IsInternalVariable($key)) {
+                    $value = htmlEntities($value, ENT_QUOTES, "UTF-8");
+                    $value = nl2br($value);
+                    $key = ucfirst($key);
+                    $ret_str .= "<div class='label'>" . $key .
+                        ": </div><div class='value>" . $value . "</div>\n";
+                }
+            }
+
+            foreach($this->fileupload_fields as $upload_field) {
+                $field_name = $upload_field["name"];
+                if (!$this->IsFileUpload($field_name)) {
+                    continue;
+                }
+
+                $filename = basename($_FILES[$field_name]['name']);
+
+                $ret_str .= "<div class='label'>File upload '$field_name'" .
+                    ": </div><div class='value'>$filename</div>\n";
+            }
+
+            return $ret_str;
+        }
+
+        function ExtraInfoToMail() {
+            $ret_str = '';
+
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $ret_str = "<div class='label'>IP address of the submitter:</div>" .
+                "<div class='value'>$ip</div>\n";
+
+            return $ret_str;
+        }
+
+        function GetMailStyle() {
+           $ret_str = "\n<style>" .
+               "body, .label, .value { font-family: Arial, Verdana; } " .
+               ".label { font-weight: bold; margin-top: 5px; font-size: 1em; " .
+               "color: #333; }" .
+               ".value { margin-bottom: 15px; font-size: 0.8em; " .
+               "padding-left: 5px; }" .
+               "</style>\n";
+
+           return $ret_str;
+        }
+
     }
 ?>
