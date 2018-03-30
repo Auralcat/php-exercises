@@ -1,3 +1,5 @@
-$(document).ready(function() {
-    alert("jQuery is working, you just shouldn't add async to the CDN tag.");
-});
+let frmValidator = new Validator("contact-us");
+frmValidator.EnableOnPageErrorDisplay();
+frmValidator.EnableMsgsTogether();
+frmValidator.addValidation("name", "req", "Please provide your name");
+frmValidator.addValidation("email", "req", "Please provide your email address");
