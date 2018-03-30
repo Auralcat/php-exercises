@@ -1,9 +1,16 @@
-<!doctype html>
+<!doctype HTML>
 <html lang="pt_BR">
+<?php
+$cssFrameworkLink = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js";
+$pageTitle = "Sample Contact Form";
+?>
 
 <head>
     <meta charset="UTF-8" />
     <title>Sample Contact Form</title>
+    <link href=<?php echo $cssFrameworkLink; ?> rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" async></script>
+    <script type="text/javascript" src="validate-fields.js"></script>
 </head>
 
 <body>
