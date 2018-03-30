@@ -1,9 +1,32 @@
 <!doctype html>
 <html lang="pt_BR">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Sample Contact Form</title>
-    </head>
-    <body>
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sample Contact Form</title>
+</head>
+
+<body>
+    <form id="contact-us" action="" method="post">
+        <fieldset>
+            <legend>Contact Us</legend>
+            <input id="submitted" name="submitted" type="hidden" value="1" />
+
+            <label for="name">Your Full Name*:</label><br/>
+            <input id="name" name="name" type="text" value="" maxlength="50" /> <br/>
+
+            <label for="email">Email Address*:</label><br/>
+            <input id="email" email="email" type="text" value="" maxlength="50" /> <br/>
+
+            <label for="phone">Phone number*:</label><br/>
+            <input id="phone" phone="phone" type="text" value="" maxlength="15" /> <br/>
+
+            <label for="message">Message:</label><br/>
+            <textarea id="message" cols="50" id="" name="message" rows="10"></textarea>
+
+            <input name="Submit" type="submit" value="Submit" />
+        </fieldset>
+    </form>
+</body>
+
 </html>
