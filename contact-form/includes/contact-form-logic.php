@@ -272,5 +272,30 @@
             return $message;
         }
 
+        function AttachFiles() {
+            foreach($this->fileupload_fields as $upld_field) {
+                $field_name = $upld_field["name"];
+                if (!$this->IsFileUploaded($field_name)) {
+                    continue;
+                }
+
+                $filename = basename($_FILES[$field_name]['name']);
+
+                $this->mailer->AddAttachment($_FILES[$field_name]["tmp_name"],
+                                             $filename);
+            }
+        }
+
+        function GetFromAddress() {
+            if (!empty($this->from_address)) {
+                return $this->from_address;
+            }
+
+            $host = $_SERVER['SERVER_NAME'];
+
+            $from = "nobody@$host";
+            return $from;
+        }
+
     }
 ?>
