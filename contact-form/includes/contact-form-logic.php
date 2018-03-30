@@ -244,5 +244,15 @@
            return $ret_str;
         }
 
+        function GetHTMLHeaderPart() {
+           $ret_str = "<!DOCTYPE html>\n<html lang='pt_BR'>" .
+               "<head><title></title>" .
+               "<meta http-equiv=Content-Type " .
+               "content='text/html' charset='utf-8'>";
+           $ret_str .= $this->GetMailStyle();
+           $ret_str .= "</head><body>";
+           return $ret_str;
+        }
+
     }
 ?>
