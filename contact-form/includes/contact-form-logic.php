@@ -166,5 +166,34 @@
 
             return true;
         }
+
+        function CollectConditionalRecipients() {
+            if (count($this->arr_conditional_recipients) > 0 &&
+                !empty($this->conditional_field) &&
+                !empty($_POST[$this->conditional_field])) {
+
+                foreach($this->arr_conditional_recipients as $condn => $rec) {
+                    if (strcasecmp($condn, $_POST[$this->conditional_field]) == 0 &&
+                        !empty($rec)) {
+
+                        $this->AddRecipient($rec);
+                    }
+                }
+            }
+        }
+
+        /* Internal variables that you don't want to appear in the email.
+           Add those variables in the array. */
+        function IsInternalVariable($varname) {
+            $arr_internal_vars =
+                array(
+                      'scaptcha',
+                      'submitted',
+                      $this->GetSpamTrapInputName(),
+                      $this->GetFormIDInputName()
+                      );
+            return in_array($varname, $arr_internal_vars);
+        }
+
     }
 ?>
