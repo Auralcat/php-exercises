@@ -254,5 +254,23 @@
            return $ret_str;
         }
 
+        function GetHTMLFooterPart() {
+            $ret_str = "</body></html>";
+            return $ret_str;
+        }
+
+        function ComposeFormToEmail() {
+            $header = $this->GetHTMLHeaderPart();
+            $form_submission = $this->FormSubmissionToMail();
+            $extra_info = $this->ExtraInfoToMail();
+            $footer = $this->GetHTMLFooterPart();
+
+            $message = $header . "Submission from 'contact us' " .
+                "form:<p>$form_submission</p><hr>" .
+                $extra_info . $footer;
+
+            return $message;
+        }
+
     }
 ?>
