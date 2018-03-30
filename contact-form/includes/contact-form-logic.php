@@ -139,5 +139,32 @@
         }
 
         /* Private Functions */
+
+        function SendFormSubmission() {
+            $this->CollectConditionalRecipients();
+            $this->mailer->CharSet = 'utf-8';
+            $this->mailer->Subject = "Contact form submission from $this->name";
+            $this->mailer->From = $this->GetFromAddress();
+            $this->mailer->FromName = $this->name;
+            $this->mailer->AddReplyTo($this->email);
+
+            $message = $this->ComposeFormToEmail();
+
+            $regex_pat = '/<(head|title|style|script)[^>]*>.?<\/\\1>/s';
+            $textMsg = trim(strip_tags(preg_replace($regex_pat, '', $message)));
+
+            $this->mailer->AltBody =
+                @html_entity_decode($textMsg, ENT_QUOTES, "UTF-8");
+
+            $this->mailer->MsgHTML($message);
+            $this->AttachFiles();
+
+            if (!$this->mailer->Send()) {
+                $this->add_error("Failed sending email!");
+                return false;
+            }
+
+            return true;
+        }
     }
 ?>
